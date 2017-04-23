@@ -1,13 +1,10 @@
 {
-    "$schema": "https://vega.github.io/schema/vega/v3.0.json",
+    "$schema": "http://vega.github.io/schema/vega/v3.0.json",
     "description": "A horizontal box plot showing median, min, and max in the US population distribution of age groups in 2000.",
     "autosize": "pad",
     "padding": 5,
     "encode": {
         "update": {
-            "stroke": {
-                "value": "#ccc"
-            },
             "fill": {
                 "value": "transparent"
             }
@@ -29,13 +26,9 @@
                     "ops": [
                         "q1",
                         "q3",
-                        "median",
-                        "min",
-                        "max"
+                        "median"
                     ],
                     "fields": [
-                        "people",
-                        "people",
                         "people",
                         "people",
                         "people"
@@ -43,10 +36,23 @@
                     "as": [
                         "lowerBox",
                         "upperBox",
-                        "midBox",
-                        "lowerWhisker",
-                        "upperWhisker"
+                        "midBox"
                     ]
+                },
+                {
+                    "type": "formula",
+                    "expr": "datum.upperBox - datum.lowerBox",
+                    "as": "IQR"
+                },
+                {
+                    "type": "formula",
+                    "expr": "datum.lowerBox - datum.IQR * 1.5",
+                    "as": "lowerWhisker"
+                },
+                {
+                    "type": "formula",
+                    "expr": "datum.upperBox + datum.IQR * 1.5",
+                    "as": "lowerWhisker"
                 }
             ]
         },
@@ -129,15 +135,43 @@
     "signals": [
         {
             "name": "width",
-            "update": "200"
-        },
-        {
-            "name": "y_step",
-            "value": 21
+            "update": "max(layer_0_width, layer_1_width, layer_2_width, layer_3_width)"
         },
         {
             "name": "height",
-            "update": "bandspace(domain('y').length, 0.1, 0.05) * y_step"
+            "update": "max(layer_0_height, layer_1_height, layer_2_height, layer_3_height)"
+        },
+        {
+            "name": "layer_0_width",
+            "update": "200"
+        },
+        {
+            "name": "layer_0_height",
+            "update": "bandspace(domain('y').length, 0.1, 0.05) * 21"
+        },
+        {
+            "name": "layer_1_width",
+            "update": "200"
+        },
+        {
+            "name": "layer_1_height",
+            "update": "bandspace(domain('y').length, 0.1, 0.05) * 21"
+        },
+        {
+            "name": "layer_2_width",
+            "update": "200"
+        },
+        {
+            "name": "layer_2_height",
+            "update": "bandspace(domain('y').length, 0.1, 0.05) * 21"
+        },
+        {
+            "name": "layer_3_width",
+            "update": "200"
+        },
+        {
+            "name": "layer_3_height",
+            "update": "bandspace(domain('y').length, 0.1, 0.05) * 21"
         }
     ],
     "marks": [
@@ -145,9 +179,6 @@
             "name": "layer_0_marks",
             "type": "rule",
             "role": "boxWhisker",
-            "style": [
-                "boxWhisker"
-            ],
             "from": {
                 "data": "data_0"
             },
@@ -167,18 +198,16 @@
                         "field": "lowerBox"
                     },
                     "stroke": {
-                        "value": "black"
+                        "value": "#4c78a8"
                     }
                 }
-            }
+            },
+            "clip": true
         },
         {
             "name": "layer_1_marks",
             "type": "rule",
             "role": "boxWhisker",
-            "style": [
-                "boxWhisker"
-            ],
             "from": {
                 "data": "data_1"
             },
@@ -198,18 +227,16 @@
                         "field": "upperWhisker"
                     },
                     "stroke": {
-                        "value": "black"
+                        "value": "#4c78a8"
                     }
                 }
-            }
+            },
+            "clip": true
         },
         {
             "name": "layer_2_marks",
             "type": "rect",
             "role": "box",
-            "style": [
-                "box"
-            ],
             "from": {
                 "data": "data_2"
             },
@@ -235,15 +262,13 @@
                         "value": "#4c78a8"
                     }
                 }
-            }
+            },
+            "clip": true
         },
         {
             "name": "layer_3_marks",
             "type": "rect",
             "role": "boxMid",
-            "style": [
-                "boxMid"
-            ],
             "from": {
                 "data": "data_3"
             },
@@ -265,13 +290,14 @@
                         "value": 1
                     },
                     "fill": {
-                        "value": "#4c78a8"
+                        "value": "white"
                     },
                     "opacity": {
                         "value": 0.7
                     }
                 }
-            }
+            },
+            "clip": true
         }
     ],
     "scales": [
@@ -313,9 +339,7 @@
             },
             "range": [
                 0,
-                {
-                    "signal": "width"
-                }
+                200
             ],
             "round": true,
             "nice": true,
@@ -346,9 +370,7 @@
                 "sort": true
             },
             "range": {
-                "step": {
-                    "signal": "y_step"
-                }
+                "step": 21
             },
             "round": true,
             "paddingInner": 0.1,
@@ -361,9 +383,7 @@
             "scale": "x",
             "labelOverlap": true,
             "orient": "bottom",
-            "tickCount": {
-                "signal": "ceil(width/40)"
-            },
+            "tickCount": 5,
             "zindex": 1
         },
         {
@@ -371,31 +391,17 @@
             "domain": false,
             "grid": true,
             "labels": false,
-            "maxExtent": 0,
-            "minExtent": 0,
             "orient": "bottom",
-            "tickCount": {
-                "signal": "ceil(width/40)"
-            },
+            "tickCount": 5,
             "ticks": false,
             "zindex": 0,
             "gridScale": "y"
         },
         {
             "scale": "y",
-            "labelOverlap": true,
             "orient": "left",
             "title": "age",
             "zindex": 1
         }
-    ],
-    "config": {
-        "axis": {
-            "domainColor": "#888",
-            "tickColor": "#888"
-        },
-        "axisY": {
-            "minExtent": 30
-        }
-    }
+    ]
 }

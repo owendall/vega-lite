@@ -221,7 +221,7 @@
                         "band": 0.5
                     },
                     "width": {
-                        "value": 5
+                        "value": 14
                     },
                     "y": {
                         "scale": "y",
@@ -259,7 +259,7 @@
                         "field": "midBox"
                     },
                     "width": {
-                        "value": 5
+                        "value": 14
                     },
                     "height": {
                         "value": 1

@@ -29,13 +29,9 @@
                     "ops": [
                         "q1",
                         "q3",
-                        "median",
-                        "min",
-                        "max"
+                        "median"
                     ],
                     "fields": [
-                        "people",
-                        "people",
                         "people",
                         "people",
                         "people"
@@ -43,10 +39,23 @@
                     "as": [
                         "lowerBox",
                         "upperBox",
-                        "midBox",
-                        "lowerWhisker",
-                        "upperWhisker"
+                        "midBox"
                     ]
+                },
+                {
+                    "type": "formula",
+                    "expr": "datum.upperBox - datum.lowerBox",
+                    "as": "IQR"
+                },
+                {
+                    "type": "formula",
+                    "expr": "datum.lowerBox - datum.IQR * 1.5",
+                    "as": "lowerWhisker"
+                },
+                {
+                    "type": "formula",
+                    "expr": "datum.upperBox + datum.IQR * 1.5",
+                    "as": "lowerWhisker"
                 }
             ]
         },

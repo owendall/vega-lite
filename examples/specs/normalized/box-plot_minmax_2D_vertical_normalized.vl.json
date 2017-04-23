@@ -104,7 +104,7 @@
           "type": "ordinal"
         },
         "size": {
-          "value": 5
+          "value": 14
         }
       }
     },
@@ -124,7 +124,7 @@
           "type": "ordinal"
         },
         "size": {
-          "value": 5
+          "value": 14
         }
       }
     }

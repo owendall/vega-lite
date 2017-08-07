@@ -1,0 +1,46 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:7.10
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run: sudo apt install rsync
+
+      - run: wget http://git.savannah.gnu.org/cgit/parallel.git/plain/src/parallel
+      - run: chmod +x parallel
+      - run: cp parallel sem
+      - run: sudo mv parallel sem /usr/local/bin
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+      # run tests!
+      - run: npm run build
+      - run: npm run test:nocompile # already run schema and tsc in build
+      - run: npm run data
+      - run: npm run build:examples-only
+      - run: npm run check:schema
+      - run: npm run check:examples
+      - run: npm run codecov
+      - run: bash <(curl -s https://codecov.io/bash)

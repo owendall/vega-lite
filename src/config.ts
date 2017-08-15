@@ -5,6 +5,7 @@ import {VL_ONLY_GUIDE_CONFIG} from './guide';
 import {defaultLegendConfig, LegendConfig} from './legend';
 import {Mark, MarkConfigMixins, PRIMITIVE_MARKS, VL_ONLY_MARK_CONFIG_PROPERTIES, VL_ONLY_MARK_SPECIFIC_CONFIG_PROPERTY_INDEX} from './mark';
 import * as mark from './mark';
+import {ProjectionConfig} from './projection';
 import {defaultScaleConfig, ScaleConfig} from './scale';
 import {defaultConfig as defaultSelectionConfig, SelectionConfig} from './selection';
 import {StackOffset} from './stack';
@@ -184,6 +185,9 @@ export interface Config extends TopLevelProperties, VLOnlyConfig, MarkConfigMixi
    */
   title?: VgTitleConfig;
 
+  /** Projection Config */
+  projection?: ProjectionConfig;
+
   /** Style Config */
   style?: StyleConfigIndex;
 
@@ -206,6 +210,7 @@ export const defaultConfig: Config = {
   area: {},
   bar: mark.defaultBarConfig,
   circle: {},
+  geoshape: {},
   line: {},
   point: {},
   rect: {},
@@ -219,6 +224,7 @@ export const defaultConfig: Config = {
   boxMid: {color: 'white'},
 
   scale: defaultScaleConfig,
+  projection: {},
   axis: {
     domainColor: '#888',
     tickColor: '#888'

@@ -8,7 +8,7 @@ import * as log from '../log';
 import {hasDiscreteDomain} from '../scale';
 import {FacetSpec} from '../spec';
 import {contains} from '../util';
-import {isVgRangeStep, RowCol, VgAxis, VgData, VgLayout, VgMarkGroup, VgScale, VgSignal} from '../vega.schema';
+import {isVgRangeStep, RowCol, VgAxis, VgData, VgLayout, VgMarkGroup, VgProjection, VgScale, VgSignal} from '../vega.schema';
 import {buildModel} from './buildmodel';
 import {assembleFacetData} from './data/assemble';
 import {parseData} from './data/parse';
@@ -29,7 +29,6 @@ export class FacetModel extends ModelWithField {
 
   constructor(spec: FacetSpec, parent: Model, parentGivenName: string, repeater: RepeaterValue, config: Config) {
     super(spec, parent, parentGivenName, config, spec.resolve);
-
 
     this.child = buildModel(spec.spec, this, this.getName('child'), undefined, repeater, config);
     this.children = [this.child];

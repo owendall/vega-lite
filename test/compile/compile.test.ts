@@ -55,7 +55,6 @@ describe('compile/compile', function() {
         },
         "encoding": {}
       }).spec;
-      console.log(spec);
       assert.isDefined(spec.projections);
     });
 

@@ -1,17 +1,16 @@
-/**
- * Utility files for producing Vega ValueRef for marks
- */
-
-
 import {Channel, X, X2, Y, Y2} from '../../channel';
 import {Config} from '../../config';
 import {ChannelDef, ConditionalChannelDef, field, FieldDef, FieldRefOption, isFieldDef, isValueDef, TextFieldDef} from '../../fielddef';
 import {hasDiscreteDomain, isBinScale, ScaleType} from '../../scale';
 import {StackProperties} from '../../stack';
+import {LATITUDE, LONGITUDE} from '../../type';
 import {contains} from '../../util';
 import {VgSignalRef, VgValueRef} from '../../vega.schema';
 import {formatSignalRef} from '../common';
 import {ScaleComponent} from '../scale/component';
+/**
+ * Utility files for producing Vega ValueRef for marks
+ */
 
 
 // TODO: we need to find a way to refactor these so that scaleName is a part of scale
@@ -92,17 +91,20 @@ function binMidSignal(fieldDef: FieldDef<string>, scaleName: string) {
  * @returns {VgValueRef} Value Ref for xc / yc or mid point for other channels.
  */
 export function midPoint(channel: Channel, channelDef: ChannelDef<string>, scaleName: string, scale: ScaleComponent, stack: StackProperties,
-  defaultRef: VgValueRef | 'zeroOrMin' | 'zeroOrMax',): VgValueRef {
+  defaultRef: VgValueRef | 'zeroOrMin' | 'zeroOrMax'): VgValueRef {
   // TODO: datum support
-
   if (channelDef) {
     /* istanbul ignore else */
 
     if (isFieldDef(channelDef)) {
+      if (contains([X, Y], channel) && contains([LATITUDE, LONGITUDE], channelDef.type)) {
+        return {field: field(channelDef, {suffix: 'geo'})};
+      }
+
       if (channelDef.bin) {
         // Use middle only for x an y to place marks in the center between start and end of the bin range.
         // We do not use the mid point for other channels (e.g. size) so that properties of legends and marks match.
-        if (contains(['x', 'y'], channel)) {
+        if (contains([X, Y], channel)) {
           if (stack && stack.impute) {
             // For stack, we computed bin_mid so we can impute.
             return fieldRef(channelDef, scaleName, {binSuffix: 'mid'});

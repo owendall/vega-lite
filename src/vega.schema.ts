@@ -209,7 +209,6 @@ export interface VgAxis {
 
   ticks?: boolean;
   tickCount?: number;
-  tickExtra?: boolean;
   tickSize?: number;
 
   title?: string;
@@ -391,7 +390,9 @@ export type VgBinding = VgCheckboxBinding | VgRadioBinding |
  */
 export interface VgAxisBase {
   /**
-   * A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis (default true).
+   * A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.
+   *
+   * __Default value:__ `true`
    */
   domain?: boolean;
 
@@ -431,14 +432,9 @@ export interface VgAxisBase {
   ticks?: boolean;
 
   /**
-   * Boolean flag indicating if an extra axis tick should be added for the initial position of the axis. This flag is useful for styling axes for `band` scales such that ticks are placed on band boundaries rather in the middle of a band. Use in conjunction with `"bandPostion": 1` and an axis `"padding"` value of `0`.
-   */
-  tickExtra?: boolean;
-
-  /**
-   * The size, in pixels, of major, minor and end ticks.
+   * The size in pixels of axis ticks.
    *
-   * __Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize` (`6` by default).
+   * __Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize`.
    *
    * @minimum 0
    */

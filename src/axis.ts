@@ -22,7 +22,7 @@ export interface Axis extends VgAxisBase, Guide {
   /**
    * The offset, in pixels, by which to displace the axis from the edge of the enclosing group or data rectangle.
    *
-   * __Default value:__ derived from  [axis config](config.html#facet-scale-config)'s `offset` (`0` by default)
+   * __Default value:__ derived from the [axis config](config.html#facet-scale-config)'s `offset` (`0` by default)
    */
   offset?: number;
 
@@ -59,6 +59,8 @@ export interface Axis extends VgAxisBase, Guide {
 
   /**
    * Optional mark definitions for custom axis encoding.
+   *
+   * @hide
    */
   encoding?: AxisEncoding;
 }
@@ -110,7 +112,7 @@ export interface AxisEncoding {
 }
 
 export const AXIS_PROPERTIES:(keyof (VgAxis|Axis))[] = [
-  'domain', 'format', 'grid', 'labelPadding', 'labels', 'labelOverlap', 'maxExtent', 'minExtent', 'offset', 'orient', 'position', 'tickCount', 'tickExtra', 'ticks', 'tickSize', 'title', 'titlePadding', 'values', 'zindex'
+  'domain', 'format', 'grid', 'labelPadding', 'labels', 'labelOverlap', 'maxExtent', 'minExtent', 'offset', 'orient', 'position', 'tickCount', 'ticks', 'tickSize', 'title', 'titlePadding', 'values', 'zindex'
 ];
 
 export const VG_AXIS_PROPERTIES: (keyof VgAxis)[] = [].concat(AXIS_PROPERTIES, ['gridScale']);

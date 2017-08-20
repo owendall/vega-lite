@@ -8,9 +8,9 @@ permalink: /docs/axis.html
 Axes provide axis lines, ticks and labels to convey how a spatial range represents a data range. Simply put, axes visualize scales.
 
 By default, Vega-Lite automatically creates axes for `x` and `y` channels when they are encoded.
-If `axis` is not defined, default axis properties are applied. User can set `axis` to an object to customize [axis properties](#axis-properties) or set `axis` to `null` to remove the axis.
+If `axis` of a channel's [field definition](encoding.html#field) is not defined, default axis properties are applied. User can set `axis` to an object to customize [axis properties](#axis-properties) or set `axis` to `null` to remove the axis.
 
-Besides `axis` property of each encoding channel, the configuration object ([`config`](config.html)) also provides [axis config](#axis-config) (`config: {axis: {...}}`) for setting default axis properties for all axes.
+Besides `axis` property of a field definition, the configuration object ([`config`](config.html)) also provides [axis config](#axis-config) (`config: {axis: {...}}`) for setting default axis properties for all axes.
 
 
 {: .suppress-error}
@@ -62,15 +62,17 @@ To customize axis, an `axis` object in [an encoding channel's definition](encodi
 
 ### Ticks
 
-{% include table.html props="ticks,tickCount,tickExtra,tickSize,values" source="Axis" %}
+{% include table.html props="ticks,tickCount,tickSize,values" source="Axis" %}
 
 ### Title
 
 {% include table.html props="maxExtent,minExtent,title,titleAlign,titleAngle,titleMaxLength,titlePadding" source="Axis" %}
 
+<!--
 ### Custom Axis Encodings
 
 **TODO** (We have `encoding` property akin to [Vega's axis `encode`](https://vega.github.io/vega/docs/axes/#custom-axis-encodings), but within each element's block, we do not have `enter/update/exit`.)
+-->
 
 {:#axis-config}
 ## Axis Config
@@ -91,7 +93,7 @@ To provide themes for all axes, the axis config `config: {axis: {...}}` can cont
 
 ### Ticks
 
-{% include table.html props="ticks,tickColor,tickExtra,tickRound,tickSize,tickWidth" source="AxisConfig" %}
+{% include table.html props="ticks,tickColor,tickRound,tickSize,tickWidth" source="AxisConfig" %}
 
 ### Title
 

@@ -13,7 +13,7 @@ export interface Guide {
   /**
    * A title for the field.
    *
-   * __Default value:__  derived from the field's name and transformation function applied e.g, "field_name", "SUM(field_name)", "BIN(field_name)", "YEAR(field_name)".
+   * __Default value:__  derived from the field's name and transformation function (`aggregate`, `bin` and `timeUnit`).  Examples: "field_name", "SUM(field_name)", "BIN(field_name)", "YEAR(field_name)".
    */
   title?: string;
 }

@@ -66,12 +66,8 @@
       "additionalProperties": false,
       "properties": {
         "domain": {
-          "description": "A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis (default true).",
+          "description": "A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.\n\n__Default value:__ `true`",
           "type": "boolean"
-        },
-        "encoding": {
-          "$ref": "#/definitions/AxisEncoding",
-          "description": "Optional mark definitions for custom axis encoding."
         },
         "format": {
           "description": "The formatting pattern for labels. This is D3's [number format pattern](https://github.com/mbostock/d3/wiki/Formatting) for quantitative fields and D3's [time format pattern](https://github.com/mbostock/d3/wiki/Time-Formatting) for time field.\n\n__Default value:__  derived from [numberFormat](config.html#format) config for quantitative fields and from [timeFormat](config.html#format) config for temporal fields.",
@@ -124,7 +120,7 @@
           "type": "number"
         },
         "offset": {
-          "description": "The offset, in pixels, by which to displace the axis from the edge of the enclosing group or data rectangle.\n\n__Default value:__ derived from  [axis config](config.html#facet-scale-config)'s `offset` (`0` by default)",
+          "description": "The offset, in pixels, by which to displace the axis from the edge of the enclosing group or data rectangle.\n\n__Default value:__ derived from the [axis config](config.html#facet-scale-config)'s `offset` (`0` by default)",
           "type": "number"
         },
         "orient": {
@@ -140,12 +136,8 @@
           "minimum": 0,
           "type": "number"
         },
-        "tickExtra": {
-          "description": "Boolean flag indicating if an extra axis tick should be added for the initial position of the axis. This flag is useful for styling axes for `band` scales such that ticks are placed on band boundaries rather in the middle of a band. Use in conjunction with `\"bandPostion\": 1` and an axis `\"padding\"` value of `0`.",
-          "type": "boolean"
-        },
         "tickSize": {
-          "description": "The size, in pixels, of major, minor and end ticks.\n\n__Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize` (`6` by default).",
+          "description": "The size in pixels of axis ticks.\n\n__Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize`.",
           "minimum": 0,
           "type": "number"
         },
@@ -154,7 +146,7 @@
           "type": "boolean"
         },
         "title": {
-          "description": "A title for the field.\n\n__Default value:__  derived from the field's name and transformation function applied e.g, \"field_name\", \"SUM(field_name)\", \"BIN(field_name)\", \"YEAR(field_name)\".",
+          "description": "A title for the field.\n\n__Default value:__  derived from the field's name and transformation function (`aggregate`, `bin` and `timeUnit`).  Examples: \"field_name\", \"SUM(field_name)\", \"BIN(field_name)\", \"YEAR(field_name)\".",
           "type": "string"
         },
         "titleAlign": {
@@ -207,7 +199,7 @@
           "type": "number"
         },
         "domain": {
-          "description": "A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis (default true).",
+          "description": "A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.\n\n__Default value:__ `true`",
           "type": "boolean"
         },
         "domainColor": {
@@ -312,16 +304,12 @@
           "description": "The color of the axis's tick.",
           "type": "string"
         },
-        "tickExtra": {
-          "description": "Boolean flag indicating if an extra axis tick should be added for the initial position of the axis. This flag is useful for styling axes for `band` scales such that ticks are placed on band boundaries rather in the middle of a band. Use in conjunction with `\"bandPostion\": 1` and an axis `\"padding\"` value of `0`.",
-          "type": "boolean"
-        },
         "tickRound": {
           "description": "Boolean flag indicating if pixel position values should be rounded to the nearest integer.",
           "type": "boolean"
         },
         "tickSize": {
-          "description": "The size, in pixels, of major, minor and end ticks.\n\n__Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize` (`6` by default).",
+          "description": "The size in pixels of axis ticks.\n\n__Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize`.",
           "minimum": 0,
           "type": "number"
         },
@@ -424,36 +412,6 @@
         "axisY": {
           "$ref": "#/definitions/VgAxisConfig",
           "description": "Y-axis specific config."
-        }
-      },
-      "type": "object"
-    },
-    "AxisEncoding": {
-      "additionalProperties": false,
-      "properties": {
-        "axis": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for the axis container."
-        },
-        "domain": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for the axis domain rule mark."
-        },
-        "grid": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for axis gridline rule marks."
-        },
-        "labels": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for axis label text marks."
-        },
-        "ticks": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for axis tick rule marks."
-        },
-        "title": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for the axis title text mark."
         }
       },
       "type": "object"
@@ -2706,146 +2664,8 @@
           "type": "string"
         },
         "title": {
-          "description": "A title for the field.\n\n__Default value:__  derived from the field's name and transformation function applied e.g, \"field_name\", \"SUM(field_name)\", \"BIN(field_name)\", \"YEAR(field_name)\".",
+          "description": "A title for the field.\n\n__Default value:__  derived from the field's name and transformation function (`aggregate`, `bin` and `timeUnit`).  Examples: \"field_name\", \"SUM(field_name)\", \"BIN(field_name)\", \"YEAR(field_name)\".",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GuideEncodingEntry": {
-      "additionalProperties": false,
-      "properties": {
-        "align": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "angle": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "baseline": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "clip": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "cursor": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "dir": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "dx": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "dy": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "ellipsis": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "endAngle": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "fill": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "fillOpacity": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "font": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "fontSize": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "fontStyle": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "fontWeight": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "height": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "innerRadius": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "interpolate": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "limit": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "opacity": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "orient": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "outerRadius": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "path": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "radius": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "shape": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "size": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "startAngle": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "stroke": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "strokeDash": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "strokeDashOffset": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "strokeOpacity": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "strokeWidth": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "tension": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "text": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "theta": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "url": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "width": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "x": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "x2": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "xc": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "y": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "y2": {
-          "$ref": "#/definitions/ValueDef"
-        },
-        "yc": {
-          "$ref": "#/definitions/ValueDef"
         }
       },
       "type": "object"
@@ -3061,10 +2881,6 @@
       "additionalProperties": false,
       "description": "Properties of a legend or boolean flag for determining whether to show it.",
       "properties": {
-        "encoding": {
-          "$ref": "#/definitions/LegendEncoding",
-          "description": "Optional mark definitions for custom legend encoding."
-        },
         "entryPadding": {
           "description": "Padding (in pixels) between legend entries in a symbol legend.",
           "type": "number"
@@ -3094,7 +2910,7 @@
           "type": "number"
         },
         "title": {
-          "description": "A title for the field.\n\n__Default value:__  derived from the field's name and transformation function applied e.g, \"field_name\", \"SUM(field_name)\", \"BIN(field_name)\", \"YEAR(field_name)\".",
+          "description": "A title for the field.\n\n__Default value:__  derived from the field's name and transformation function (`aggregate`, `bin` and `timeUnit`).  Examples: \"field_name\", \"SUM(field_name)\", \"BIN(field_name)\", \"YEAR(field_name)\".",
           "type": "string"
         },
         "titleAlign": {
@@ -3299,32 +3115,6 @@
         "titlePadding": {
           "description": "The padding, in pixels, between title and legend.",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "LegendEncoding": {
-      "additionalProperties": false,
-      "properties": {
-        "gradient": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for legend gradient filled rect marks."
-        },
-        "labels": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for legend label text marks."
-        },
-        "legend": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for the legend container.\nThis can be useful for creating legend with custom x, y position."
-        },
-        "symbols": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for legend symbol marks."
-        },
-        "title": {
-          "$ref": "#/definitions/GuideEncodingEntry",
-          "description": "Custom encoding for the legend title text mark."
         }
       },
       "type": "object"
@@ -6171,7 +5961,7 @@
       "description": "Base object for Vega's Axis and Axis Config.\nAll of these properties are both properties of Vega's Axis and Axis Config.",
       "properties": {
         "domain": {
-          "description": "A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis (default true).",
+          "description": "A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.\n\n__Default value:__ `true`",
           "type": "boolean"
         },
         "grid": {
@@ -6216,12 +6006,8 @@
           "description": "The minimum extent in pixels that axis ticks and labels should use. This determines a minimum offset value for axis titles.\n\n__Default value:__ `30`",
           "type": "number"
         },
-        "tickExtra": {
-          "description": "Boolean flag indicating if an extra axis tick should be added for the initial position of the axis. This flag is useful for styling axes for `band` scales such that ticks are placed on band boundaries rather in the middle of a band. Use in conjunction with `\"bandPostion\": 1` and an axis `\"padding\"` value of `0`.",
-          "type": "boolean"
-        },
         "tickSize": {
-          "description": "The size, in pixels, of major, minor and end ticks.\n\n__Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize` (`6` by default).",
+          "description": "The size in pixels of axis ticks.\n\n__Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize`.",
           "minimum": 0,
           "type": "number"
         },
@@ -6257,7 +6043,7 @@
           "type": "number"
         },
         "domain": {
-          "description": "A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis (default true).",
+          "description": "A boolean flag indicating if the domain (the axis baseline) should be included as part of the axis.\n\n__Default value:__ `true`",
           "type": "boolean"
         },
         "domainColor": {
@@ -6358,16 +6144,12 @@
           "description": "The color of the axis's tick.",
           "type": "string"
         },
-        "tickExtra": {
-          "description": "Boolean flag indicating if an extra axis tick should be added for the initial position of the axis. This flag is useful for styling axes for `band` scales such that ticks are placed on band boundaries rather in the middle of a band. Use in conjunction with `\"bandPostion\": 1` and an axis `\"padding\"` value of `0`.",
-          "type": "boolean"
-        },
         "tickRound": {
           "description": "Boolean flag indicating if pixel position values should be rounded to the nearest integer.",
           "type": "boolean"
         },
         "tickSize": {
-          "description": "The size, in pixels, of major, minor and end ticks.\n\n__Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize` (`6` by default).",
+          "description": "The size in pixels of axis ticks.\n\n__Default value:__  derived from [axis config](config.html#axis-config)'s `tickSize`.",
           "minimum": 0,
           "type": "number"
         },

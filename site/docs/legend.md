@@ -7,10 +7,10 @@ permalink: /docs/legend.html
 
 Similar to [axes](axis.html), legends visualize scales. However, whereas axes aid interpretation of scales with spatial ranges, legends aid interpretation of scales with ranges such as colors, shapes and sizes.
 
-By default, Vega-Lite automatically creates legends for `color`, `size`, and `shape` channels when they are encoded. 
-If `legend` is not defined, default legend properties are applied. User can  set `legend` to an object to customize [legend properties](#legend-properties) or set `legend` to `null` to remove the legend.
+By default, Vega-Lite automatically creates legends for `color`, `size`, and `shape` channels when they are encoded.
+If `legend` of a channel's [field definition](encoding.html#field) is  not defined, default legend properties are applied. User can  set `legend` to an object to customize [legend properties](#legend-properties) or set `legend` to `null` to remove the legend.
 
-Besides `legend` property of each encoding channel, the configuration object ([`config`](config.html)) also provides [legend config](#legend-config) (`config: {legend: {...}}`) for setting default legend properties for all legends.
+Besides `legend` property of a field definition, the configuration object ([`config`](config.html)) also provides [legend config](#legend-config) (`config: {legend: {...}}`) for setting default legend properties for all legends.
 
 
 {: .suppress-error}
@@ -62,9 +62,11 @@ To customize legends, a `legend` object in [an encoding channel's definition](en
 
 {% include table.html props="title,titleAlign" source="Legend" %}
 
+<!--
 ### Custom Legend Encodings
 
 **TODO** (We have `encoding` property akin to [Vega's axis `encode`](https://vega.github.io/vega/docs/legends/#custom-legend-encodings), but within each element's block, we do not have `enter/update/exit`.)
+-->
 
 {:#legend-config}
 ## Legend Config

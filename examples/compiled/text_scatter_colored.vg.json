@@ -19,6 +19,10 @@
                     "type": "formula",
                     "expr": "datum.Origin[0]",
                     "as": "OriginInitial"
+                },
+                {
+                    "type": "filter",
+                    "expr": "datum[\"Horsepower\"] !== null && !isNaN(datum[\"Horsepower\"]) && datum[\"Miles_per_Gallon\"] !== null && !isNaN(datum[\"Miles_per_Gallon\"])"
                 }
             ]
         }

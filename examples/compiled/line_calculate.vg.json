@@ -38,6 +38,10 @@
                     "as": [
                         "mean_temp_range"
                     ]
+                },
+                {
+                    "type": "filter",
+                    "expr": "datum[\"month_date\"] !== null && !isNaN(datum[\"month_date\"])"
                 }
             ]
         }

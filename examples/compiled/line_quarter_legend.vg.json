@@ -41,6 +41,10 @@
                     "as": [
                         "mean_price"
                     ]
+                },
+                {
+                    "type": "filter",
+                    "expr": "datum[\"quarter_date\"] !== null && !isNaN(datum[\"quarter_date\"])"
                 }
             ]
         }

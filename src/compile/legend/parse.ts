@@ -1,7 +1,7 @@
 import {Channel, COLOR, NonspatialScaleChannel, OPACITY, SHAPE, SIZE} from '../../channel';
 import {title as fieldDefTitle} from '../../fielddef';
 import {Legend, LEGEND_PROPERTIES, VG_LEGEND_PROPERTIES} from '../../legend';
-import {deleteEmptyObject, keys} from '../../util';
+import {deleteNestedProperty, keys} from '../../util';
 import {VgLegend, VgLegendEncode} from '../../vega.schema';
 import {getSpecifiedOrDefaultValue, numberFormat, titleMerger} from '../common';
 import {isUnitModel, Model} from '../model';
@@ -180,10 +180,10 @@ export function mergeLegendComponent(mergedLegend: LegendComponent, childLegend:
   }
   if (typeMerged){
     if(((mergedLegend.implicit || {}).encode || {}).gradient){
-      deleteEmptyObject(mergedLegend.implicit, ['encode', 'gradient']);
+      deleteNestedProperty(mergedLegend.implicit, ['encode', 'gradient']);
     }
     if (((mergedLegend.explicit || {}).encode || {}).gradient) {
-      deleteEmptyObject(mergedLegend.explicit, ['encode', 'gradient']);
+      deleteNestedProperty(mergedLegend.explicit, ['encode', 'gradient']);
     }
   }
 

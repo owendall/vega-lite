@@ -88,7 +88,7 @@ describe('compile/legend', function() {
       });
 
       const fieldDef = {field: 'a', type: TEMPORAL, timeUnit: TimeUnit.QUARTER};
-      const label = encode.labels(fieldDef, {}, model, COLOR,  legendCompt);
+      const label = encode.labels(fieldDef, {}, model, COLOR, legendCompt);
       const expected = `'Q' + quarter(datum.value)`;
       assert.deepEqual(label.text.signal, expected);
     });

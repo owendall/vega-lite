@@ -10,7 +10,7 @@ import {LegendComponent} from './component';
 
 
 export function symbols(fieldDef: FieldDef<string>, symbolsSpec: any, model: UnitModel, channel: Channel, legendCmpt: LegendComponent) {
-  if (((legendCmpt.explicit || {}).type === 'gradient') || ((legendCmpt.implicit || {}).type === 'gradient')){
+  if (legendCmpt.get('type') === 'gradient'){
     return undefined;
   }
 
@@ -81,7 +81,7 @@ export function symbols(fieldDef: FieldDef<string>, symbolsSpec: any, model: Uni
 export function gradient(fieldDef: FieldDef<string>, gradientSpec: any, model: UnitModel, channel: Channel, legendCmpt: LegendComponent) {
   let gradient:any = {};
 
-  if (((legendCmpt.explicit || {}).type === 'gradient') || ((legendCmpt.implicit || {}).type === 'gradient')) {
+  if (legendCmpt.get('type') === 'gradient') {
     const opacityDef = model.encoding.opacity;
     if (isValueDef(opacityDef)) {
       gradient.opacity = {value: opacityDef.value};

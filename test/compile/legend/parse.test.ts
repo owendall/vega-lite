@@ -42,7 +42,7 @@ describe('compile/legend', function() {
         const def = legendParse.parseLegendForChannel(model, channel).combine();
 
         if (channel !== OPACITY){
-          assert.equal(def.encode.symbols.update.opacity.value, "0.7");
+          assert.equal(def.encode.symbols.update.opacity.value, 0.7);
         } else {
           assert.isUndefined(def.encode.symbols.update.opacity);
         }

@@ -7,8 +7,6 @@ import * as encode from '../../../src/compile/legend/encode';
 import {TimeUnit} from '../../../src/timeunit';
 import {TEMPORAL} from '../../../src/type';
 import {parseUnitModelWithScale} from '../../util';
-import {VgLegend} from '../../../src/vega.schema';
-import {Split} from '../../../src/compile/split';
 
 describe('compile/legend', function() {
   describe('encode.symbols', function() {

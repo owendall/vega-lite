@@ -10,7 +10,7 @@ import {LegendComponent} from './component';
 
 
 export function symbols(fieldDef: FieldDef<string>, symbolsSpec: any, model: UnitModel, channel: Channel, legendCmpt: LegendComponent) {
-  if (legendCmpt.get('type') === 'gradient'){
+  if (legendCmpt.get('type') === 'gradient') {
     return undefined;
   }
 

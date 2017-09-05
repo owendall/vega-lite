@@ -240,7 +240,7 @@ export type Diff<T extends string, U extends string> = ({[P in T]: P } & {[P in 
 export type Omit<T, K extends keyof T> = {[P in Diff<keyof T, K>]: T[P]};
 
 // delete an object's empty key until it is not empty.
-export function deleteNestedProperty(obj: any, orderedProps: string[]){
+export function deleteNestedProperty(obj: any, orderedProps: string[]) {
   let isEmpty = true;
   while (orderedProps.length > 0 && isEmpty) {
     let o = obj;

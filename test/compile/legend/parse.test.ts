@@ -5,9 +5,6 @@ import {COLOR, OPACITY, SHAPE, SIZE} from '../../../src/channel';
 import * as legendParse from '../../../src/compile/legend/parse';
 import {UnitSpec} from '../../../src/spec';
 import {parseLayerModel, parseUnitModelWithScale} from '../../util';
-import {LegendComponent} from '../../../src/compile/legend/component';
-import {mergeLegendComponent} from '../../../src/compile/legend/parse';
-import {VgLegend} from '../../../src/vega.schema';
 
 describe('compile/legend', function() {
   describe('parseLegendForChannel()', function() {
@@ -41,7 +38,7 @@ describe('compile/legend', function() {
 
         const def = legendParse.parseLegendForChannel(model, channel).combine();
 
-        if (channel !== OPACITY){
+        if (channel !== OPACITY) {
           assert.equal(def.encode.symbols.update.opacity.value, 0.7);
         } else {
           assert.isUndefined(def.encode.symbols.update.opacity);
